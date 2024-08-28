@@ -13,10 +13,20 @@ export default function ThemeSwitch() {
   if (!mounted) return <div className="invisible w-6 h-6" />;
 
   if (resolvedTheme === "dark") {
-    return <FiSun onClick={() => setTheme("light")} className="w-6 h-6" />;
+    return (
+      <FiSun
+        onClick={() => setTheme("light")}
+        className="w-6 h-6 hover:scale-125 transition-transform duration-300"
+      />
+    );
   }
 
   if (resolvedTheme === "light") {
-    return <FiMoon onClick={() => setTheme("dark")} className="w-6 h-6" />;
+    return (
+      <FiMoon
+        onClick={() => setTheme("dark")}
+        className="w-6 h-6 hover:scale-125 transition-transform duration-300"
+      />
+    );
   }
 }

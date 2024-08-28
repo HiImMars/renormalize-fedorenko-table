@@ -1,9 +1,14 @@
 "use client";
 
+import cn from "classnames";
 import { useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { QUERY_PARAMS_KEYS } from "@/app/constants/queryParams";
 import { Pagination } from "../Pagination/Pagination";
+import { Statuses } from "@/app/types/status";
+import { FiEdit } from "react-icons/fi";
+import { RiDeleteBinLine } from "react-icons/ri";
+import { TableArrow } from "../TableArrow/TableArrow";
 
 interface DataItem {
   "Tracking ID": number;
@@ -19,6 +24,9 @@ interface DataItem {
 interface Props {
   initialData: DataItem[];
 }
+
+const DEFAULT_LABEL_CLASSNAME =
+  "text-xs text-center font-medium rounded-3xl px-2 py-1";
 
 export default function DataTable({ initialData }: Props) {
   const searchParams = useSearchParams();
@@ -64,41 +72,81 @@ export default function DataTable({ initialData }: Props) {
   };
 
   return (
-    <div>
-      <table>
+    <>
+      <table className="w-full mx-auto">
         <thead>
           <tr>
-            <th>Tracking ID</th>
-            <th>Product</th>
-            <th>Customer</th>
-            <th>Date</th>
-            <th>Amount</th>
-            <th>Payment Mode</th>
-            <th>Status</th>
-            <th>Action</th>
+            <th className="px-2">Tracking ID</th>
+            <th className="text-left relative">
+              Product
+              <TableArrow />
+            </th>
+            <th className="px-2 text-left relative">
+              Customer
+              <TableArrow />
+            </th>
+            <th className="px-2 text-left relative">
+              Date
+              <TableArrow />
+            </th>
+            <th className="px-2 text-left">Amount</th>
+            <th className="px-2 text-left">Payment Mode</th>
+            <th className="px-2 text-left relative">
+              Status
+              <TableArrow />
+            </th>
+            <th className="px-2 text-left">Action</th>
           </tr>
         </thead>
         <tbody>
           {paginatedData.map((item) => (
-            <tr key={item["Tracking ID"]}>
-              <td>{item["Tracking ID"]}</td>
-              <td>
-                <img
-                  src={item["Product Image"]}
-                  alt={item["Product Name"]}
-                  width={40}
-                />
-                <span>{item["Product Name"]}</span>
+            <tr
+              key={item["Tracking ID"]}
+              className="odd:bg-purple-light dark:odd:bg-purple-medium"
+            >
+              <td className="p-4 text-center max-w-[120px] min-h-24">
+                #{item["Tracking ID"]}
               </td>
-              <td>{item.Customer}</td>
-              <td>{item.Date}</td>
-              <td>{item.Amount}</td>
-              <td>{item["Payment Mode"]}</td>
-              <td>{item.Status}</td>
-              <td>
-                <button onClick={() => handleDelete(item["Tracking ID"])}>
-                  Delete
-                </button>
+              <td className="py-4 min-h-24">
+                <div className="max-w-[200px] flex items-center gap-2">
+                  <img
+                    src={item["Product Image"]}
+                    alt={item["Product Name"]}
+                    className="w-8 h-8 rounded-lg shrink-0"
+                  />
+                  <p title={item["Product Name"]}>{item["Product Name"]}</p>
+                </div>
+              </td>
+              <td className="px-2 py-4 max-w-[120px] min-h-24">
+                {item.Customer}
+              </td>
+              <td className="px-2 py-4 max-w-[120px] min-h-24">{item.Date}</td>
+              <td className="px-2 py-4 max-w-[120px] min-h-24">
+                {item.Amount}
+              </td>
+              <td className="px-2 py-4 max-w-[120px] min-h-24">
+                {item["Payment Mode"]}
+              </td>
+              <td className="pl-2 pr-5 py-4 max-w-[120px] min-h-24">
+                <div
+                  className={cn(DEFAULT_LABEL_CLASSNAME, {
+                    "bg-red-light text-red-base":
+                      item.Status === Statuses.CANCELED,
+                    "bg-green-light text-green-base":
+                      item.Status === Statuses.DELIVERED,
+                    "bg-orange-light text-orange-base":
+                      item.Status === Statuses.PROCESS,
+                  })}
+                >
+                  {item.Status}
+                </div>
+              </td>
+              <td className="px-2 py-4 max-w-[120px] min-h-24 flex items-center gap-2">
+                <FiEdit className="w-6 h-6 stroke-purple-base" />
+                <RiDeleteBinLine
+                  onClick={() => handleDelete(item["Tracking ID"])}
+                  className="w-6 h-6 fill-red-dark"
+                />
               </td>
             </tr>
           ))}
@@ -110,6 +158,6 @@ export default function DataTable({ initialData }: Props) {
         pageCount={totalPages}
         setPage={handlePageChange}
       />
-    </div>
+    </>
   );
 }

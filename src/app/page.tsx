@@ -20,7 +20,9 @@ export default async function Home() {
   return (
     <main>
       <Header />
-      <DataTable initialData={data} />
+      <section>
+        <DataTable initialData={data} />
+      </section>
     </main>
   );
 }

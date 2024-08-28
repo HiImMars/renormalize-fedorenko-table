@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "bg-white dark:bg-purple-medium text-black dark:text-white text-sm",
+          "bg-white dark:bg-purple-dark text-black dark:text-white text-sm",
           montserrat.className
         )}
       >

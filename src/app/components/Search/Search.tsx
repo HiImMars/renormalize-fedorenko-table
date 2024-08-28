@@ -1,8 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { QUERY_PARAMS_KEYS } from "@/app/constants/queryParams";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { useState } from "react";
+import { CiSearch } from "react-icons/ci";
 // import { useDebounceCallback } from "usehooks-ts";
 
 export default function Search() {
@@ -56,6 +57,14 @@ export default function Search() {
   //   };
 
   return (
-    <input value={searchQuery} placeholder="Search" onChange={handleChange} />
+    <div className="relative">
+      <input
+        value={searchQuery}
+        placeholder="Search..."
+        onChange={handleChange}
+        className="pl-7 pr-2 py-1 rounded-lg border border-gray-dark placeholder:text-gray-dark dark:text-white dark:border-white dark:placeholder:text-white dark:bg-inherit"
+      />
+      <CiSearch className="w-4 h-4 absolute top-[6px] left-2 fill-gray-dark stroke-1 stroke-gray-dark dark:fill-white dark:stroke-white" />
+    </div>
   );
 }
