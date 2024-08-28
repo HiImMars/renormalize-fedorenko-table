@@ -3,7 +3,7 @@ import ReactPaginate, { ReactPaginateProps } from "react-paginate";
 
 const DEFAULT_PAGE_CLASSNAME = "text-xs";
 const DEFAULT_PAGE_LINK_CLASSNAME =
-  "px-3 py-2 rounded-lg bg-gray-base dark:bg-purple-deep hover:bg-purple-light";
+  "px-3 py-2 rounded-lg bg-gray-base dark:bg-purple-deep hover:bg-purple-base hover:text-white dark:hover:bg-purple-base dark:hover:text-white transition-colors";
 const DEFAULT_DISABLED_LINK_CLASSNAME = "px-2 py-2";
 const DEFAULT_DISABLED_NAV_LINK_CLASSNAME = "opacity-50 pointer-events-none";
 

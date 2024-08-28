@@ -8,7 +8,7 @@ import { Pagination } from "../Pagination/Pagination";
 import { Statuses } from "@/app/types/status";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
-import { TableArrow } from "../TableArrow/TableArrow";
+import { TableArrow } from "./TableArrow";
 
 interface DataItem {
   "Tracking ID": number;
@@ -73,7 +73,7 @@ export default function DataTable({ initialData }: Props) {
 
   return (
     <>
-      <table className="w-full mx-auto">
+      <table className="w-full mx-auto max-w-screen-xl">
         <thead>
           <tr>
             <th className="px-2">Tracking ID</th>
@@ -104,11 +104,11 @@ export default function DataTable({ initialData }: Props) {
               key={item["Tracking ID"]}
               className="odd:bg-purple-light dark:odd:bg-purple-medium"
             >
-              <td className="p-4 text-center max-w-[120px] min-h-24">
+              <td className="p-4 text-center max-w-30 min-h-24">
                 #{item["Tracking ID"]}
               </td>
               <td className="py-4 min-h-24">
-                <div className="max-w-[200px] flex items-center gap-2">
+                <div className="max-w-50 flex items-center gap-2">
                   <img
                     src={item["Product Image"]}
                     alt={item["Product Name"]}
@@ -117,17 +117,13 @@ export default function DataTable({ initialData }: Props) {
                   <p title={item["Product Name"]}>{item["Product Name"]}</p>
                 </div>
               </td>
-              <td className="px-2 py-4 max-w-[120px] min-h-24">
-                {item.Customer}
-              </td>
-              <td className="px-2 py-4 max-w-[120px] min-h-24">{item.Date}</td>
-              <td className="px-2 py-4 max-w-[120px] min-h-24">
-                {item.Amount}
-              </td>
-              <td className="px-2 py-4 max-w-[120px] min-h-24">
+              <td className="px-2 py-4 max-w-30 min-h-24">{item.Customer}</td>
+              <td className="px-2 py-4 max-w-30 min-h-24">{item.Date}</td>
+              <td className="px-2 py-4 max-w-30 min-h-24">{item.Amount}</td>
+              <td className="px-2 py-4 max-w-30 min-h-24">
                 {item["Payment Mode"]}
               </td>
-              <td className="pl-2 pr-5 py-4 max-w-[120px] min-h-24">
+              <td className="pl-2 pr-5 py-4 max-w-30 min-h-24">
                 <div
                   className={cn(DEFAULT_LABEL_CLASSNAME, {
                     "bg-red-light text-red-base":
@@ -141,11 +137,11 @@ export default function DataTable({ initialData }: Props) {
                   {item.Status}
                 </div>
               </td>
-              <td className="px-2 py-4 max-w-[120px] min-h-24 flex items-center gap-2">
-                <FiEdit className="w-6 h-6 stroke-purple-base" />
+              <td className="px-2 py-4 max-w-30 min-h-24 flex items-center gap-2">
+                <FiEdit className="w-6 h-6 stroke-purple-base cursor-pointer hover:scale-125 transition-transform duration-300" />
                 <RiDeleteBinLine
                   onClick={() => handleDelete(item["Tracking ID"])}
-                  className="w-6 h-6 fill-red-dark"
+                  className="w-6 h-6 fill-red-dark cursor-pointer hover:scale-125 transition-transform duration-300"
                 />
               </td>
             </tr>

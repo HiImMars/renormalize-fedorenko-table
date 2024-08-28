@@ -25,6 +25,10 @@ const config: Config = {
         orange: { base: "#CD6200", light: "#FEF2E5" },
         red: { base: "#A30D11", light: "#FBE7E8", dark: "#A30D11" },
       },
+      maxWidth: {
+        30: "120px",
+        50: "200px",
+      },
     },
   },
   plugins: [],
