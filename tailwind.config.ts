@@ -9,12 +9,21 @@ const config: Config = {
   darkMode: "class",
   theme: {
     extend: {
-      colors:{
-        "light-bg": "#fff",
-        "dark-bg": "#000",
-        "light-text": "#000",
-        "dark-text": "#fff",
-      }
+      colors: {
+        purple: {
+          base: "#624DE3",
+          light: "#F7F6FE",
+          medium: "#26264F",
+          dark: "#1D1E42",
+          deep: "#141432",
+        },
+        gray: {
+          base: "#E0E0E0",
+        },
+        green: { base: "#1F9254", light: "#EBF9F1" },
+        orange: { base: "#CD6200", light: "#FEF2E5" },
+        red: { base: "#A30D11", light: "#FBE7E8", dark: "#A30D11" },
+      },
     },
   },
   plugins: [],

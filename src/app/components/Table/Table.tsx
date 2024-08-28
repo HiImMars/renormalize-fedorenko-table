@@ -17,26 +17,38 @@ interface DataItem {
 }
 
 interface Props {
-  data: DataItem[];
+  initialData: DataItem[];
 }
 
-export default function DataTable({ data }: Props) {
+export default function DataTable({ initialData }: Props) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
 
   const entries = Number(searchParams.get(QUERY_PARAMS_KEYS.ENTRIES)) || 10;
   const searchQuery = searchParams.get(QUERY_PARAMS_KEYS.SEARCH_QUERY) || "";
-  const currentPage = Number(searchParams.get(QUERY_PARAMS_KEYS.PAGE)) || 1;
 
+  const currentPage = Number(searchParams.get(QUERY_PARAMS_KEYS.PAGE)) || 1;
+  const [page, setPage] = useState(currentPage);
+
+  const [data, setData] = useState(initialData);
   const [filteredData, setFilteredData] = useState(data);
 
+  const handlePageChange = (newPage: number) => {
+    const params = new URLSearchParams(searchParams);
+    params.set(QUERY_PARAMS_KEYS.PAGE, newPage.toString());
+    setPage(newPage);
+    router.push(`${pathname}?${params.toString()}`);
+  };
+
   useEffect(() => {
-    const filtered = data.filter((item) =>
+    const filtered = initialData?.filter((item) =>
       item["Product Name"].toLowerCase().includes(searchQuery.toLowerCase())
     );
     setFilteredData(filtered);
-  }, [searchQuery, data]);
+
+    if (searchQuery) handlePageChange(1);
+  }, [searchQuery, initialData]);
 
   const totalPages = Math.ceil(filteredData.length / entries);
 
@@ -45,10 +57,10 @@ export default function DataTable({ data }: Props) {
     currentPage * entries
   );
 
-  const handlePageChange = (newPage: number) => {
-    const params = new URLSearchParams(searchParams);
-    params.set(QUERY_PARAMS_KEYS.PAGE, newPage.toString());
-    router.push(`${pathname}?${params.toString()}`);
+  const handleDelete = (trackingID: number) => {
+    const newData = data.filter((item) => item["Tracking ID"] !== trackingID);
+    setData(newData);
+    setFilteredData(newData);
   };
 
   return (
@@ -83,14 +95,18 @@ export default function DataTable({ data }: Props) {
               <td>{item.Amount}</td>
               <td>{item["Payment Mode"]}</td>
               <td>{item.Status}</td>
-              <td>Edit/Delete</td>
+              <td>
+                <button onClick={() => handleDelete(item["Tracking ID"])}>
+                  Delete
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
 
       <Pagination
-        page={currentPage}
+        page={page}
         pageCount={totalPages}
         setPage={handlePageChange}
       />

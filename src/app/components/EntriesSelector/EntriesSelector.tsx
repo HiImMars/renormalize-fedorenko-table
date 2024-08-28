@@ -1,8 +1,8 @@
 "use client";
 
-import { QUERY_PARAMS_KEYS } from "@/app/constants/queryParams";
-import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { useState } from "react";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { QUERY_PARAMS_KEYS } from "@/app/constants/queryParams";
 
 const entriesOptions = [
   { value: 10, id: 1 },
@@ -30,7 +30,11 @@ export default function EntriesSelector() {
   };
 
   return (
-    <select value={selectedValue} onChange={handleSelect}>
+    <select
+      value={selectedValue}
+      onChange={handleSelect}
+      className="p-1 rounded-lg bg-gray-base dark:bg-purple-deep"
+    >
       {Boolean(entriesOptions?.length) &&
         entriesOptions.map((option) => (
           <option key={option.id} value={option.value}>

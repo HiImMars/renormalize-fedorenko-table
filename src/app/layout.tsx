@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import cn from "classnames";
+import { Montserrat } from "next/font/google";
 import { Providers } from "./providers";
+import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Customers Table",
@@ -17,11 +18,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <Providers>
-            {children}
-        </Providers>
-        </body>
+      <body
+        className={cn(
+          "bg-white dark:bg-purple-medium text-black dark:text-white text-sm",
+          montserrat.className
+        )}
+      >
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
