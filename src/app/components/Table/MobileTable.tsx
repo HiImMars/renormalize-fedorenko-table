@@ -5,6 +5,7 @@ import { Statuses } from "@/app/types/status";
 import { DataItem, DEFAULT_LABEL_CLASSNAME } from "./Table";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
+import Image from "next/image";
 
 interface Props {
   paginatedData: DataItem[];
@@ -24,9 +25,12 @@ export default function MobileTable({ paginatedData, handleDelete }: Props) {
             {item["Tracking ID"]}
           </div>
           <div className="flex flex-col justify-center items-center">
-            <img
+            <Image
               src={item["Product Image"]}
               alt={item["Product Name"]}
+              width={96}
+              height={96}
+              priority={false}
               className="w-24 h-24 rounded-lg shrink-0"
             />
             <p className="mt-2" title={item["Product Name"]}>

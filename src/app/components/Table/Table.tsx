@@ -10,6 +10,7 @@ import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { TableArrow } from "./TableArrow";
 import MobileTable from "./MobileTable";
+import Image from "next/image";
 
 export interface DataItem {
   "Tracking ID": number;
@@ -112,9 +113,11 @@ export default function DataTable({ initialData }: Props) {
                   </td>
                   <td className="py-4 min-h-24">
                     <div className="max-w-50 flex items-center gap-2">
-                      <img
+                      <Image
                         src={item["Product Image"]}
                         alt={item["Product Name"]}
+                        width={32}
+                        height={32}
                         className="w-8 h-8 rounded-lg shrink-0"
                       />
                       <p title={item["Product Name"]}>{item["Product Name"]}</p>
