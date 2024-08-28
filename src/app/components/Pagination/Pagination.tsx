@@ -1,5 +1,7 @@
 import { FC } from "react";
 import ReactPaginate, { ReactPaginateProps } from "react-paginate";
+import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 const DEFAULT_PAGE_CLASSNAME = "text-xs";
 const DEFAULT_PAGE_LINK_CLASSNAME =
@@ -43,8 +45,18 @@ export const Pagination: FC<Props> = ({
       pageRangeDisplayed={pageRangeDisplayed}
       marginPagesDisplayed={marginPagesDisplayed}
       onPageChange={onPageChange}
-      previousLabel={"Previous"}
-      nextLabel={"Next"}
+      previousLabel={
+        <>
+          <span className="hidden lg:inline">Previous</span>
+          <MdOutlineKeyboardArrowLeft className="inline lg:hidden w-5 h-5" />
+        </>
+      }
+      nextLabel={
+        <>
+          <span className="hidden lg:inline">Next</span>
+          <MdOutlineKeyboardArrowRight className="inline lg:hidden w-5 h-5" />
+        </>
+      }
     />
   );
 };

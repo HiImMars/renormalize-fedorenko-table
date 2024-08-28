@@ -35,7 +35,7 @@ export default function Search() {
         value={searchQuery}
         placeholder="Search..."
         onChange={handleChange}
-        className="pl-7 pr-2 py-1 rounded-lg border border-gray-dark placeholder:text-gray-dark dark:text-white dark:border-white dark:placeholder:text-white dark:bg-inherit"
+        className="w-full sm:max-w-56 pl-7 pr-2 py-1 rounded-lg border border-gray-dark placeholder:text-gray-dark dark:text-white dark:border-white dark:placeholder:text-white dark:bg-inherit"
       />
       <CiSearch className="w-4 h-4 absolute top-[6px] left-2 fill-gray-dark stroke-1 stroke-gray-dark dark:fill-white dark:stroke-white" />
     </div>

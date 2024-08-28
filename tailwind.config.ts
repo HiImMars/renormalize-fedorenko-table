@@ -29,6 +29,9 @@ const config: Config = {
         30: "120px",
         50: "200px",
       },
+      screens: {
+        lg: "900px",
+      },
     },
   },
   plugins: [],

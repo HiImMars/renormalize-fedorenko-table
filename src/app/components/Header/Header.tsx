@@ -5,8 +5,8 @@ import { GoPlus } from "react-icons/go";
 
 export default function Header() {
   return (
-    <header className="flex items-center justify-between p-4">
-      <div className="flex items-center gap-5">
+    <header className="p-4 flex flex-col lg:items-center justify-between gap-3 lg:flex-row">
+      <div className="flex flex-col lg:items-center gap-5 lg:flex-row">
         <div className="flex items-center gap-3">
           Show
           <EntriesSelector />
@@ -14,7 +14,7 @@ export default function Header() {
         </div>
         <Search />
       </div>
-      <div className="flex items-center gap-3">
+      <div className="flex justify-between lg:justify-center items-center gap-3">
         <div className="relative">
           <button className="bg-purple-base text-white font-bold text-xs py-2 pl-8 pr-3 rounded-lg hover:bg-opacity-90 focus:bg-opacity-90 transition-opacity">
             Add Customer
