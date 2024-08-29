@@ -77,7 +77,7 @@ function DataTable({ initialData }: Props) {
     <>
       {paginatedData.length ? (
         <>
-          <table className="hidden lg:table w-full mx-auto max-w-screen-xl">
+          <table className="hidden lg:table w-full mx-auto">
             <thead>
               <tr>
                 <th className="px-2">Tracking ID</th>
