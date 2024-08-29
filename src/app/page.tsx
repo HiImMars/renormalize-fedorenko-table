@@ -1,9 +1,12 @@
 import Header from "./components/Header/Header";
 import DataTable from "./components/Table/Table";
-import { getData } from "./services/getData";
+import { promises as fs } from "fs";
 
 export default async function Home() {
-  const data = await getData();
+  const file = await fs.readFile(process.cwd() + "/src/app/data.json", "utf8");
+  const data = JSON.parse(file);
+
+  console.log(data);
 
   return (
     <main>
