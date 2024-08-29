@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { QUERY_PARAMS_KEYS } from "@/app/constants/queryParams";
 
@@ -10,7 +10,7 @@ const entriesOptions = [
   { value: 50, id: 3 },
 ];
 
-export default function EntriesSelector() {
+function EntriesSelector() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -42,5 +42,13 @@ export default function EntriesSelector() {
           </option>
         ))}
     </select>
+  );
+}
+
+export function EntriesSelectorWrapper() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <EntriesSelector />
+    </Suspense>
   );
 }

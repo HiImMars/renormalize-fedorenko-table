@@ -1,5 +1,5 @@
-import EntriesSelector from "../EntriesSelector/EntriesSelector";
-import Search from "../Search/Search";
+import { EntriesSelectorWrapper } from "../EntriesSelector/EntriesSelector";
+import { Searchbar } from "../Search/Search";
 import ThemeSwitch from "../ThemeSwitcher/ThemeSwitcher";
 import { GoPlus } from "react-icons/go";
 
@@ -9,10 +9,10 @@ export default function Header() {
       <div className="flex flex-col lg:items-center gap-5 lg:flex-row">
         <div className="flex items-center gap-3">
           Show
-          <EntriesSelector />
+          <EntriesSelectorWrapper />
           entries
         </div>
-        <Search />
+        <Searchbar />
       </div>
       <div className="flex justify-between lg:justify-center items-center gap-3">
         <div className="relative">

@@ -1,7 +1,7 @@
 "use client";
 
 import cn from "classnames";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { QUERY_PARAMS_KEYS } from "@/app/constants/queryParams";
 import { Pagination } from "../Pagination/Pagination";
@@ -30,7 +30,7 @@ interface Props {
 export const DEFAULT_LABEL_CLASSNAME =
   "text-xs text-center font-medium rounded-3xl px-2 py-1";
 
-export default function DataTable({ initialData }: Props) {
+function DataTable({ initialData }: Props) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -173,5 +173,13 @@ export default function DataTable({ initialData }: Props) {
         <div className="text-xl text-center font-bold">No results</div>
       )}
     </>
+  );
+}
+
+export function DataTableWrapper({ initialData }: Props) {
+  return (
+    <Suspense fallback={<div>Loading Table...</div>}>
+      <DataTable initialData={initialData} />
+    </Suspense>
   );
 }

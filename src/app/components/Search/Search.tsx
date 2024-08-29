@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { QUERY_PARAMS_KEYS } from "@/app/constants/queryParams";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { CiSearch } from "react-icons/ci";
 
-export default function Search() {
+function Search() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -39,5 +39,13 @@ export default function Search() {
       />
       <CiSearch className="w-4 h-4 absolute top-[6px] left-2 fill-gray-dark stroke-1 stroke-gray-dark dark:fill-white dark:stroke-white" />
     </div>
+  );
+}
+
+export function Searchbar() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Search />
+    </Suspense>
   );
 }
