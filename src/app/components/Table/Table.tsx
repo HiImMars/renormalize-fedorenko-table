@@ -118,6 +118,7 @@ export default function DataTable({ initialData }: Props) {
                         alt={item["Product Name"]}
                         width={32}
                         height={32}
+                        priority={false}
                         className="w-8 h-8 rounded-lg shrink-0"
                       />
                       <p title={item["Product Name"]}>{item["Product Name"]}</p>
